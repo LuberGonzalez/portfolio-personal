@@ -421,3 +421,94 @@ button {
   /* font-size: 1.6rem; */
   padding-top: 0.5rem;
 }
+
+
+/* SKILLS */
+
+
+.skills {
+  min-height: auto;
+  padding-bottom: 7rem;
+  background: var(--second-bg-color);
+}
+
+
+.skills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap:3rem;
+  /* border: 1px solid red; */
+  /* align-items: center;
+  justify-content: center;
+  text-align: center; */
+}
+
+.skills-column {
+  flex: 1 1 30rem;
+}
+
+.skills-column .title {
+  font-size: 2rem;
+  margin: 0 0 1.5rem;
+}
+
+.skills-content {
+  position: relative;
+  border: .2rem solid var(--main-color);
+  border-radius: 0.6rem;
+  padding: .5rem 1.5rem;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.skills-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--bg-color);
+  z-index: -1;
+  transition: .5s;
+}
+
+.skills-content:hover::before {
+  width: 100%;
+}
+
+.skills-content .progress {
+  padding: 1rem 0;
+}
+
+.progress h3 {
+  font-size: 1.7rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress h3 span {
+  color: var(--text-color);
+}
+
+.skills-content .progress .bar {
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  border: .2rem solid var(--main-color);
+  padding: 0.5rem;
+  margin: 1rem 0;
+}
+
+.skills-content .progress .bar span {
+  display: block;
+  height: 100%;
+  border-radius: 3rem;
+  background: var(--main-color);
+}
+
+
+/* CON ESTE CSS PUEDO ALTERAR EL % DE LAS BARRAS DE PROGRESION */
+
+.skills-column:nth-child(1) .skills-content .progress:nth-child(1) .bar span {
+  width: 90%;
+}
