@@ -1,22 +1,25 @@
 // toggle icon navbar
-const $menuIcon = document.querySelector("#menu-icon");
-const $navbar = document.querySelector(".navbar");
+const $menuIcon = document.querySelector(".bx-menu");
+const $navbar = document.querySelector(".main-menu");
 
 // scroll sections
 const $sections = document.querySelectorAll(".section");
 const $navLinks = document.querySelectorAll(".main-menu-link");
 
+$menuIcon.addEventListener("click", () => {
+  $menuIcon.classList.toggle("bx-x");
+  $navbar.classList.toggle("active");
+});
+
 window.onscroll = () => {
   // Sticky header
   const $header = document.querySelector(".main-header");
- 
-  if($header) {
+
+  if ($header) {
     $header.classList.toggle("sticky", window.scrollY > 100);
-  }else {
+  } else {
     console.error("NO existe el Header");
   }
-
-  // Remove toggle icon and navbar when clicking navbar links (scroll)
 
   if ($sections.length > 0) {
     $sections.forEach((sec) => {
@@ -36,6 +39,10 @@ window.onscroll = () => {
             );
             if (linkToActivate) {
               linkToActivate.classList.add("active");
+
+              // Remove toggle icon and navbar when clicking navbar links (scroll)
+              $menuIcon.classList.remove("bx-x");
+              $navbar.classList.remove("active");
             } else {
               console.error(
                 `No se encontró un enlace para la sección con id ${id}`
