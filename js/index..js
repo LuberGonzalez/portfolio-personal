@@ -40,6 +40,9 @@ window.onscroll = () => {
             if (linkToActivate) {
               linkToActivate.classList.add("active");
 
+              // Activa o desactiva la animación según el estado de isAnimationActive
+              sec.classList.add("show-animate");
+
               // Remove toggle icon and navbar when clicking navbar links (scroll)
               $menuIcon.classList.remove("bx-x");
               $navbar.classList.remove("active");
@@ -52,13 +55,20 @@ window.onscroll = () => {
         } else {
           console.error("No hay enlaces");
         }
+      } else {
+        // Usar de nuevo la animacion
+        sec.classList.remove("show-animate");
       }
     });
   } else {
     // Handle the case where no sections were found
-
-    console.error("No se hizo n");
+    console.error("No se hizo nafa");
   }
-
   // Animation footer on scroll
+  const $footer = document.querySelector(".footer");
+
+  $footer.classList.toggle(
+    "show-animate",
+    this.innerHeight + this.scrollY >= document.scrollingElement.scrollHeight
+  );
 };
