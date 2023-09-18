@@ -26,6 +26,7 @@ html {
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
+  /* position: relative; */
 }
 
 ul {
@@ -75,9 +76,9 @@ button {
 
 .main-menu {
   position: relative;
-  flex: 0 0 45%;
+  flex: 0 0 30%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -85,6 +86,7 @@ button {
   font-size: 1.2rem;
   color: var(--text-color);
   font-weight: 500;
+  transition-delay: 0;
 }
 
 .main-menu-link:hover,
@@ -105,7 +107,87 @@ button {
   padding: 10rem 9% 2rem;
 }
 
-/* Home */
+/* MENU FLOTANTE */
+.menu-float {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--main-color);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 10px;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-float-container {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-float-item {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.icon-circle {
+  text-decoration: none;
+  color: white;
+  font-size: 24px;
+  border-radius: 50%;
+  padding: 10px;
+  transition: background-color 0.3s;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-color);
+  border: 0.2rem solid var(--main-color);
+  border-radius: 50%;
+  font-size: 20px;
+  color: var(--main-color);
+  z-index: 1;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.tooltip {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-5%);
+  transition: opacity 0.2s, transform 0.2s;
+  pointer-events: none;
+}
+
+.menu-float-item:hover .tooltip {
+  opacity: 1;
+  transform: translateX(70%) translateY(-120%);
+}
+
+.icon-circle:hover {
+  opacity: 0.75;
+  color: var(--text-color);
+}
+
+.icon-circle.active {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--text-color);
+  transform: scale(0.95);
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+/* MENU FLOTANTE */
+
+/* HOME */
 
 .home {
   display: flex;
@@ -740,11 +822,16 @@ button {
   width: 50%;
   /* position: relative; */
 }
+.menu-float .animate {
+  background: var(--bg-color);
+}
+
 
 .logo .animate,
 .main-menu .animate,
 .bx-menu .animate,
-.home.show-animate .animate {
+.home.show-animate .animate,
+.menu-float .animate {
   animation: showRight 1s ease forwards;
   animation-delay: calc(0.3s * var(--i));
 }
@@ -824,10 +911,19 @@ button {
     z-index: 1;
     background: var(--main-color);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-    flex-direction: column;
     text-align: left;
     transition: 0.25s ease;
     transition-delay: 0.25s;
+  }
+
+  .menu-float {
+    left: -50%;
+    transition: 0.25s ease;
+    transition-delay: 0.25s;
+  }
+
+  .menu-float.active {
+    left: 0%;
   }
 
   .main-menu.active {
@@ -854,9 +950,6 @@ button {
   }
 
   .main-menu-link {
-    display: block;
-    font-size: 2rem;
-    margin: 3rem 0;
     transform: translateX(-20rem);
     transition: 0.25s ease;
     transition-delay: 0s;

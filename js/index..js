@@ -1,14 +1,15 @@
 // toggle icon navbar
 const $menuIcon = document.querySelector(".bx-menu");
-const $navbar = document.querySelector(".main-menu");
-
+const $navbar = document.querySelector(".menu-float");
+const $menu = document.querySelector('.main-menu');
 // scroll sections
 const $sections = document.querySelectorAll(".section");
-const $navLinks = document.querySelectorAll(".main-menu-link");
+const $navLinks = document.querySelectorAll(".menu-float-link");
 
 $menuIcon.addEventListener("click", () => {
   $menuIcon.classList.toggle("bx-x");
   $navbar.classList.toggle("active");
+  $menu.classList.toggle("active");
 });
 
 window.onscroll = () => {
@@ -35,7 +36,7 @@ window.onscroll = () => {
           $navLinks.forEach((link) => {
             link.classList.remove("active");
             const linkToActivate = document.querySelector(
-              `.main-menu-link[href*=${id}]`
+              `.menu-float-link[href*=${id}]`
             );
             if (linkToActivate) {
               linkToActivate.classList.add("active");
@@ -46,6 +47,7 @@ window.onscroll = () => {
               // Remove toggle icon and navbar when clicking navbar links (scroll)
               $menuIcon.classList.remove("bx-x");
               $navbar.classList.remove("active");
+              $menu.classList.remove('active');
             } else {
               console.error(
                 `No se encontró un enlace para la sección con id ${id}`
