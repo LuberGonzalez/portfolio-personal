@@ -1,3 +1,5 @@
+import { slider } from "./helpers/slider.js"; 
+
 // toggle icon navbar
 const $menuIcon = document.querySelector(".bx-menu");
 const $navbar = document.querySelector(".menu-float");
@@ -67,10 +69,14 @@ window.onscroll = () => {
     console.error("No se hizo nafa");
   }
   // Animation footer on scroll
-  const $footer = document.querySelector(".footer");
+  // const $footer = document.querySelector(".footer");
 
   $footer.classList.toggle(
     "show-animate",
     this.innerHeight + this.scrollY >= document.scrollingElement.scrollHeight
   );
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+  slider();
+});
