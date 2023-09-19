@@ -1,3 +1,5 @@
+import { validationForm } from "./helpers/form.js";
+import { keyboard } from "./helpers/keyboard.js";
 import { slider } from "./helpers/slider.js";
 
 // toggle icon navbar
@@ -81,3 +83,14 @@ window.onscroll = () => {
 document.addEventListener("DOMContentLoaded", () => {
   slider();
 });
+
+document.addEventListener("submit", (e) => {
+  if (e.target.matches(".main-form")) {
+    validationForm(e);
+  }
+});
+
+
+document.addEventListener('keydown', (e)=> {
+  keyboard(e);
+})

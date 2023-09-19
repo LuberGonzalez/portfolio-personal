@@ -439,11 +439,11 @@
       <form action="#" class="main-form">
         <div class="input-box">
           <div class="input-field">
-            <input type="text" class="input" placeholder="Nombre" required />
+            <input type="text" class="input" placeholder="Nombre" id="name" name="name" required data-string=""/>
             <span class="focus"></span>
           </div>
           <div class="input-field">
-            <input type="email" class="input" placeholder="Email" required />
+            <input type="email" class="input" placeholder="Email" id="email" name="email" required />
             <span class="focus"></span>
           </div>
           <span class="animate scroll" style="--i: 3"></span>
@@ -455,12 +455,15 @@
               type="text"
               class="input"
               placeholder="Numero de Telefono"
+              id="phone"
+              name="phone"
               required
+              data-number=""
             />
             <span class="focus"></span>
           </div>
           <div class="input-field">
-            <input type="text" class="input" placeholder="Asunto" required />
+            <input type="text" class="input" placeholder="Asunto" id="affair" name="affair" required />
             <span class="focus"></span>
           </div>
 
@@ -469,12 +472,12 @@
 
         <div class="textarea-field">
           <textarea
-            name=""
-            id=""
             cols="30"
             rows="10"
             placeholder="Mensaje"
             class="textarea"
+            id="message"
+            name="message"
             required
           ></textarea>
           <span class="focus"></span>
