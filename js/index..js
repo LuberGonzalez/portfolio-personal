@@ -1,9 +1,9 @@
-import { slider } from "./helpers/slider.js"; 
+import { slider } from "./helpers/slider.js";
 
 // toggle icon navbar
 const $menuIcon = document.querySelector(".bx-menu");
 const $navbar = document.querySelector(".menu-float");
-const $menu = document.querySelector('.main-menu');
+const $menu = document.querySelector(".main-menu");
 // scroll sections
 const $sections = document.querySelectorAll(".section");
 const $navLinks = document.querySelectorAll(".menu-float-link");
@@ -49,7 +49,7 @@ window.onscroll = () => {
               // Remove toggle icon and navbar when clicking navbar links (scroll)
               $menuIcon.classList.remove("bx-x");
               $navbar.classList.remove("active");
-              $menu.classList.remove('active');
+              $menu.classList.remove("active");
             } else {
               console.error(
                 `No se encontró un enlace para la sección con id ${id}`
@@ -69,14 +69,15 @@ window.onscroll = () => {
     console.error("No se hizo nafa");
   }
   // Animation footer on scroll
-  // const $footer = document.querySelector(".footer");
+  const $footer = document.querySelector(".footer");
 
   $footer.classList.toggle(
     "show-animate",
-    this.innerHeight + this.scrollY >= document.scrollingElement.scrollHeight
+    window.innerHeight + window.scrollY >=
+      document.scrollingElement.scrollHeight
   );
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   slider();
 });
