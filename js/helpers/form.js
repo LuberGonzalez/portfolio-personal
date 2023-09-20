@@ -1,3 +1,10 @@
+import { removeAlert } from "./efects.js";
+import { fetchCustom } from "./fetch.js";
+
+function removeSpacesAroundText(text) {
+  return text.trim();
+}
+
 function isValidEmail(email) {
   const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   return emailPattern.test(email);
@@ -38,36 +45,35 @@ function validateLength({ value, maxLength, minLength, fieldName }) {
   }
 }
 
-export function validationForm(e) {
+export async function validationForm(e) {
   e.preventDefault();
 
   const $form = e.target;
 
-  // Accede a los elementos del formulario por su atributo "name"
+  const $contact = e.target.parentElement;
+
   const nameInput = $form.elements.name;
   const emailInput = $form.elements.email;
   const phoneInput = $form.elements.phone;
   const affairInput = $form.elements.affair;
   const messageTextarea = $form.elements.message;
 
-  // Puedes acceder a los valores de los campos de esta manera
-  const nameValue = nameInput.value;
-  const emailValue = emailInput.value;
-  const phoneValue = phoneInput.value;
-  const affairValue = affairInput.value;
-  const messageValue = messageTextarea.value;
-
-  // Realiza la validación u otras operaciones con los valores aquí
-  console.log("Nombre:", nameValue);
-  console.log("Email:", emailValue);
-  console.log("Número de Teléfono:", phoneValue);
-  console.log("Asunto:", affairValue);
-  console.log("Mensaje:", messageValue);
+  let nameValue = nameInput.value;
+  let emailValue = emailInput.value;
+  let phoneValue = phoneInput.value;
+  let affairValue = affairInput.value;
+  let messageValue = messageTextarea.value;
 
   if (validateName(nameValue)) {
     console.log("El nombre es válido.");
   } else {
     console.error("El nombre no es válido.");
+    removeAlert({
+      container: $contact,
+      message: "El nombre no es válido.",
+      type: ALERT_TYPE_DANGER,
+    });
+    return;
   }
 
   const validationLengthName = validateLength({
@@ -78,16 +84,30 @@ export function validationForm(e) {
   });
 
   if (validationLengthName) {
-    alert(validationLengthName); // Muestra el mensaje de validación con el nombre del campo
+    removeAlert({
+      container: $contact,
+      message: validationLengthName,
+      type: ALERT_TYPE_DANGER,
+    });
     return;
   } else {
     // La longitud es válida, continúa con tu lógica
   }
 
+  nameValue = removeSpacesAroundText(nameValue);
+
   if (isValidEmail(emailValue)) {
     console.log("El correo electrónico es válido.");
   } else {
     console.error("El correo electrónico no es válido.");
+
+    removeAlert({
+      container: $contact,
+      message: "El correo electrónico no es válido",
+      type: ALERT_TYPE_DANGER,
+    });
+
+    return;
   }
 
   const validationLengthEmail = validateLength({
@@ -98,16 +118,28 @@ export function validationForm(e) {
   });
 
   if (validationLengthEmail) {
-    alert(validationLengthEmail); // Muestra el mensaje de validación con el nombre del campo
+    removeAlert({
+      container: $contact,
+      message: validationLengthEmail,
+      type: ALERT_TYPE_DANGER,
+    });
     return;
   } else {
     // La longitud es válida, continúa con tu lógica
   }
 
+  emailValue = removeSpacesAroundText(emailValue);
+
   if (validateSpanishPhoneNumber(phoneValue)) {
     console.log("Si el telefono es valido");
   } else {
     console.error("No es valido el telefono, no es de la region");
+
+    removeAlert({
+      container: $contact,
+      message: "No es valido el telefono, no es de la region",
+      type: ALERT_TYPE_DANGER,
+    });
   }
 
   const validationLengthPhone = validateLength({
@@ -118,11 +150,17 @@ export function validationForm(e) {
   });
 
   if (validationLengthPhone) {
-    alert(validationLengthPhone); // Muestra el mensaje de validación con el nombre del campo
+    removeAlert({
+      container: $contact,
+      message: validationLengthPhone,
+      type: ALERT_TYPE_DANGER,
+    });
     return;
   } else {
     // La longitud es válida, continúa con tu lógica
   }
+
+  phoneValue = removeSpacesAroundText(phoneValue);
 
   const validationLengthAffair = validateLength({
     value: affairValue,
@@ -132,11 +170,18 @@ export function validationForm(e) {
   });
 
   if (validationLengthAffair) {
-    alert(validationLengthAffair); // Muestra el mensaje de validación con el nombre del campo
+    removeAlert({
+      container: $contact,
+      message: validationLengthAffair,
+      type: ALERT_TYPE_DANGER,
+    });
+
     return;
   } else {
     // La longitud es válida, continúa con tu lógica
   }
+
+  affairValue = removeSpacesAroundText(affairValue);
 
   const validationLengthMessage = validateLength({
     value: messageValue,
@@ -145,10 +190,18 @@ export function validationForm(e) {
     fieldName: "Mensaje",
   });
 
-  if (validationLengthAffair) {
-    alert(validationLengthAffair); // Muestra el mensaje de validación con el nombre del campo
+  if (validationLengthMessage) {
+    removeAlert({
+      container: $contact,
+      message: validationLengthMessage,
+      type: ALERT_TYPE_DANGER,
+    });
     return;
   } else {
     // La longitud es válida, continúa con tu lógica
   }
+
+  messageValue = removeSpacesAroundText(messageValue);
+
+  await fetchCustom($form);
 }

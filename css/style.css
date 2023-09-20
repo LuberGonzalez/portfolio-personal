@@ -6,10 +6,8 @@
   --text-color: #ededed;
   --main-color: #00abf0;
 
-  --border-radius-cards-carrousel :20px;
-
+  --border-radius-cards-carrousel: 20px;
 }
-
 
 /* Z INDEX  */
 :root {
@@ -19,7 +17,6 @@
   --z-index-max: 9999;
 }
 /* Z INDEX  */
-
 
 * {
   margin: 0;
@@ -33,7 +30,7 @@
 }
 
 html {
-  font-size: 62, 5%;
+  font-size: 65%;
   overflow-x: hidden;
 }
 
@@ -44,9 +41,9 @@ body {
 }
 
 ul {
-  list-style-type: none; /* Elimina los marcadores de lista */
-  padding: 0; /* Elimina el relleno por defecto */
-  margin: 0; /* Elimina el margen por defecto */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 a {
@@ -68,6 +65,106 @@ button {
   color: inherit;
   cursor: pointer;
 }
+
+/* ALERTAS */
+
+/* Estilos de alerta */
+.alert-container {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: var(--z-index-medium);
+}
+
+.alert {
+  padding: 15px;
+  margin: 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  position: relative;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.alert-success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #3c763d;
+}
+
+.alert-info {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #31708f;
+}
+
+.alert-warning {
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+  color: #8a6d3b;
+}
+
+.alert-danger {
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+}
+
+/* Estilos de cierre */
+.close-btn {
+  cursor: pointer;
+  font-weight: bold;
+  background: transparent;
+  border: none;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+/* ALERTAS */
+
+/* LOADER */
+/* Estilos para el loader gigante */
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.5s ease-in-out; /* Agrega una transición para el efecto de desaparición */
+}
+
+.loader {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+
+/* Agrega una clase para ocultar el loader */
+.loader-hidden {
+  opacity: 0;
+  pointer-events: none; /* Evita que se pueda interactuar con el loader oculto */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* LOADER */
 
 .main-header {
   position: fixed;
@@ -706,7 +803,6 @@ button {
   transition: all 1.5s ease;
 }
 
-
 .slider-slide img {
   height: inherit;
   width: inherit;
@@ -785,7 +881,7 @@ button {
 
 .project-card:hover .project-description {
   transform: translateY(0);
-  opacity: .75;
+  opacity: 0.75;
 }
 
 /* SLIDER */
@@ -797,6 +893,7 @@ button {
 .contact {
   min-height: auto;
   padding-bottom: 7rem;
+  position: relative;
 }
 
 .contact h2 {
@@ -961,13 +1058,12 @@ button {
   background: var(--bg-color);
 }
 
-
 .logo .animate,
 .main-menu .animate,
 .bx-menu .animate,
 .home.show-animate .animate,
 .menu-float .animate,
-.projects.show-animate .animate{
+.projects.show-animate .animate {
   animation: showRight 1s ease forwards;
   animation-delay: calc(0.3s * var(--i));
 }

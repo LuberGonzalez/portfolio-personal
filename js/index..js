@@ -90,7 +90,6 @@ document.addEventListener("submit", (e) => {
   }
 });
 
-
-document.addEventListener('keydown', (e)=> {
+document.addEventListener("keydown", (e) => {
   keyboard(e);
-})
+});
