@@ -1,6 +1,6 @@
+import { ALERT_TYPE_DANGER } from "./constants.js";
 import { removeAlert } from "./efects.js";
 import { fetchCustom } from "./fetch.js";
-
 function removeSpacesAroundText(text) {
   return text.trim();
 }
@@ -140,6 +140,7 @@ export async function validationForm(e) {
       message: "No es valido el telefono, no es de la region",
       type: ALERT_TYPE_DANGER,
     });
+    return;
   }
 
   const validationLengthPhone = validateLength({

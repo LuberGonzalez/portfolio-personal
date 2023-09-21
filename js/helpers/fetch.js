@@ -7,7 +7,11 @@ import {
 import { removeAlert } from "./efects.js";
 
 function handleTimeoutError(container) {
-  console.log(container);
+  if (!container) {
+    console.error("Error: El contenedor no es válido");
+    return;
+  }
+
   console.error(
     "La solicitud se ha cancelado debido a un tiempo de espera excedido"
   );
@@ -34,8 +38,8 @@ export async function fetchCustom(form) {
   // Establece un temporizador para abortar la solicitud después de 30 segundos
   const timeoutId = setTimeout(() => {
     abortController.abort();
-    handleTimeoutError();
-  }, 30000);
+    handleTimeoutError($contact);
+  }, 90000);
 
   try {
     const response = await fetch(FORM_SUBMIT_URL, {
@@ -71,6 +75,16 @@ export async function fetchCustom(form) {
       // La solicitud fue abortada debido al tiempo límite
       $loader.classList.add("loader-hidden");
       handleTimeoutError($contact);
+      return;
     }
+
+    $loader.classList.add("loader-hidden");
+
+    removeAlert({
+      container: $contact,
+      message:
+        "Se produjo, un error al enviar el correo electronico disculpe las molestias ocasionadas intente nuevamente",
+      type: ALERT_TYPE_DANGER,
+    });
   }
 }
